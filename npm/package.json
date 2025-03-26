@@ -1,0 +1,12 @@
+{
+  "name": "epsitec-database",
+  "version": "1.4.0",
+  "description": "Epsitec Database",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "node .prepublish.js"
+  },
+  "author": "Mathieu Schroeter",
+  "license": "MIT"
+}

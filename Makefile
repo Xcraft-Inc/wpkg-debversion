@@ -10,14 +10,14 @@ LIBS+=
 SRCS=$(wildcard src/*.cpp)
 OBJS=$(SRCS:.cpp=.o)
 
-LIBOBJS := $(filter-out src/debversion.o, $(OBJS))
-
 ifeq ($(WASM),1)
 	SRCS+=$(wildcard src/emscripten/*.cpp)
-	OBJS=$(SRCS:.cpp=.o)
+	LIBOBJS=$(SRCS:.cpp=.o)
 else
 	LDFLAGS+=-shared
 endif
+
+LIBOBJS := $(filter-out src/debversion.o, $(OBJS))
 
 all: libdebversion.a libdebversion.so debversion
 
@@ -28,7 +28,7 @@ libdebversion.so: $(LIBOBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^
 
 libdebversion.js: $(LIBOBJS)
-	$(CXX) --bind $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(CXX) --bind $(CXXFLAGS) $(LDFLAGS) -o $@ $^
 
 debversion: $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
