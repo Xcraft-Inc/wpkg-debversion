@@ -1,7 +1,7 @@
 {
   "name": "wpkg-debversion",
   "version": "1.0.0",
-  "description": "WPKG Debian version comparer",
+  "description": "WPKG Debian versions comparer",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
