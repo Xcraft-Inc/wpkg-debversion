@@ -15,5 +15,5 @@ int string_debian_versions_compare(const std::string &left, const std::string &r
 }
 
 EMSCRIPTEN_BINDINGS(my_module) {
-   function("string_debian_versions_compare", &string_debian_versions_compare, allow_raw_pointers ());
+   function("string_debian_versions_compare", &string_debian_versions_compare);
 }
