@@ -1,6 +1,6 @@
 {
   "name": "wpkg-debversion",
-  "version": "1.4.0",
+  "version": "1.0.0",
   "description": "WPKG Debian version comparer",
   "main": "lib/index.js",
   "scripts": {
