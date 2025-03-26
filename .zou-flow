@@ -1,0 +1,3 @@
+[update-version]
+	package-lock = npm/package-lock.json
+	package-json = npm/package.json
