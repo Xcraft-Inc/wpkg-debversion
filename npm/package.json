@@ -1,7 +1,7 @@
 {
-  "name": "epsitec-database",
+  "name": "wpkg-debversion",
   "version": "1.4.0",
-  "description": "Epsitec Database",
+  "description": "WPKG Debian version comparer",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
