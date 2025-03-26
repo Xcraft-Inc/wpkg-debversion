@@ -1,8 +1,10 @@
 "use strict";
 
-const libdebversion = require("./libdebversion.js");
+let libdebversion;
 
 module.exports = async (left, right) => {
-  const deb = await libdebversion();
-  return deb.string_debian_versions_compare(left, right);
+  if (!libdebversion) {
+    libdebversion = await require("./libdebversion.js")();
+  }
+  return libdebversion.string_debian_versions_compare(left, right);
 };
