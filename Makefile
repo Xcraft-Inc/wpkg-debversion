@@ -45,7 +45,7 @@ depend: .depend
 	$(CXX) $(CPPFLAGS) -MM $^>>./.depend;
 
 clean:
-	$(RM) $(OBJS) src/emscripten/*.o tests debversion libdebversion.a libdebversion.so libdebversion.js libdebversion.wasm
+	$(RM) $(OBJS) src/emscripten/*.o src/tests/*.o tests tests.wasm debversion libdebversion.a libdebversion.so libdebversion.js libdebversion.wasm
 
 distclean: clean
 	$(RM) *~ .depend
@@ -57,5 +57,8 @@ wasm-build:
 	./make_wasm.sh release
 	$(CP) libdebversion.js npm/lib
 	$(CP) libdebversion.wasm npm/lib
+
+wasm-tests:
+	CPPFLAGS="-Isrc" LDFLAGS="-sSTANDALONE_WASM" emmake make tests
 
 include .depend
