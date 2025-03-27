@@ -3,4 +3,5 @@
 *.a
 *.so
 debversion
+tests
 libdebversion.*

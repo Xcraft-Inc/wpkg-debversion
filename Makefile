@@ -7,7 +7,7 @@ CXXFLAGS+=-fPIC
 LDFLAGS+=
 LIBS+=
 
-SRCS=$(wildcard src/*.cpp)
+SRCS=$(wildcard src/*.cpp src/tests/*.cpp)
 OBJS=$(SRCS:.cpp=.o)
 
 ifeq ($(WASM),1)
@@ -17,6 +17,8 @@ else
 	LDFLAGS+=-shared
 endif
 
+TESTOBJS := $(filter-out src/debversion.o, $(OBJS))
+OBJS := $(filter-out src/tests/unittest_version.o, $(OBJS))
 LIBOBJS := $(filter-out src/debversion.o, $(OBJS))
 
 all: libdebversion.a libdebversion.so debversion
@@ -33,6 +35,9 @@ libdebversion.js: $(LIBOBJS)
 debversion: $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+tests: $(TESTOBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 depend: .depend
 
 .depend: $(SRCS)
@@ -40,7 +45,7 @@ depend: .depend
 	$(CXX) $(CPPFLAGS) -MM $^>>./.depend;
 
 clean:
-	$(RM) $(OBJS) src/emscripten/*.o debversion libdebversion.a libdebversion.so libdebversion.js libdebversion.wasm
+	$(RM) $(OBJS) src/emscripten/*.o tests debversion libdebversion.a libdebversion.so libdebversion.js libdebversion.wasm
 
 distclean: clean
 	$(RM) *~ .depend
