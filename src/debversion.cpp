@@ -149,11 +149,6 @@ int main(int argc, char *argv[])
             license::license();
             exit(1);
         }
-        if(strcmp("-V", argv[1]) == 0 || strcmp("--version", argv[1]) == 0)
-        {
-            printf("%s\n", "1.0.0");
-            exit(1);
-        }
         validate(argv[1]);
     }
     if(argc == 3 && (strcmp(argv[1], "-p") == 0 || strcmp(argv[1], "--print") == 0))
