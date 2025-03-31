@@ -8,3 +8,12 @@ module.exports = async (left, right) => {
   }
   return libdebversion.string_debian_versions_compare(left, right);
 };
+
+module.exports.init = async () => await require("./libdebversion.js")();
+
+module.exports.sync = (left, right) => {
+  if (!libdebversion) {
+    throw new Error("Missing call init");
+  }
+  return libdebversion.string_debian_versions_compare(left, right);
+};
