@@ -9,7 +9,9 @@ module.exports = async (left, right) => {
   return libdebversion.string_debian_versions_compare(left, right);
 };
 
-module.exports.init = async () => await require("./libdebversion.js")();
+module.exports.init = async () => {
+  libdebversion = await require("./libdebversion.js")();
+};
 
 module.exports.sync = (left, right) => {
   if (!libdebversion) {
