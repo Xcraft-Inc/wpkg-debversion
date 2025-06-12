@@ -11,7 +11,10 @@ int string_debian_versions_compare(const std::string &left, const std::string &r
     char error_string[256];
     debian_version_handle_t l(string_to_debian_version(left.c_str(), error_string, sizeof(error_string)));
     debian_version_handle_t r(string_to_debian_version(right.c_str(), error_string, sizeof(error_string)));
-    return debian_versions_compare(l, r);
+    int result =  debian_versions_compare(l, r);
+    delete_debian_version(l);
+    delete_debian_version(r);
+    return result;
 }
 
 EMSCRIPTEN_BINDINGS(my_module) {
